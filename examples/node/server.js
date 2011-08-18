@@ -7,6 +7,8 @@ var PUBLIC_DIR = path.dirname(__filename) + '/../shared/public',
     bayeux     = new faye.NodeAdapter({mount: '/bayeux', timeout: 20}),
     port       = process.ARGV[2] || '8000';
 
+faye.Logging.logLevel = 'info';
+
 bayeux.getClient().subscribe('/chat/*', function(message) {
   console.log('[' + message.user + ']: ' + message.message);
 });
